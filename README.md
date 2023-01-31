@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+## Class Component and State 2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Concepts in Focus
+* setState() Object Syntax
+* Sending Function as Callback
+* Input Element
+* Searchable Users List Application
 
-## Available Scripts
+# search user list
 
-In the project directory, you can run:
+* Add input Elements
+* Filter user list based on input values
+* Dispay filterd user list
 
-### `npm start`
+# Deleting User
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* maintain user list in the state 
+* Add delete button
+* Add delete function functionality
+------------------------------------------------------------------------
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#  setState() Object Syntax:
 
-### `npm test`
+The setState() object syntax can be used while updating the state to the value that is independent of the previous state.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Syntax:
+this.setState(
+  {propertyName1: propertyValue1},
+  {propertyName2: propertyValue2}
+  // and many more...
+);
+------------------------------------------------------------------------
+#  Callback vs Object
 
-### `npm run build`
+# Callback:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+this.setState(prevState => {
+  return { count: prevState.count + 1 };
+});
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+It is used while updating the state to a value, which is computed based on the previous state.
+-----------
 
-### `npm run eject`
+# Object:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+this.setState({ quantity: 2 });
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+It is used while updating the state to a static value.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+------------------------------------------------------------------------
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+##  Sending Function as Callback
 
-## Learn More
+* We can pass functions as props to child components.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Syntax:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<ComponentName functionName={this.functionName} />
 
-### Code Splitting
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##  Input Element:
 
-### Analyzing the Bundle Size
+In React, the Input Element value can be handled in two ways:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Controlled Input
+Uncontrolled Input
 
-### Making a Progressive Web App
+# Controlled Input
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+If the Input Element value is handled by a React State then it is called Controlled Input. Controlled Inputs are the React Suggested way to handle Input Element value.
 
-### Advanced Configuration
+# Example:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+import {Component} from 'react'
 
-### Deployment
+class App extends Component {
+  state = {
+    searchInput: '',
+  }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  onChangeSearchInput = event => {
+    this.setState({
+      searchInput: event.target.value,
+    })
+  }
 
-### `npm run build` fails to minify
+  render() {
+    const {searchInput} = this.state
+    return (
+      <input
+        type="text"
+        onChange={this.onChangeSearchInput}
+        value={searchInput}
+      />
+    )
+  }
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default App
+------------------------------------------------------------------------
+
+## Uncontrolled Input
+
+If the Input Element value is handled by the browser itself then it is called Uncontrolled Input.
+
+Uncontrolled inputs are like traditional HTML form inputs. Its value can only be set by a user, but not programmatically. However, in controlled input value is programmatically handled using React State.
+
+# Example:
+
+<input type="text" />
+------------------------------------------------------------------------
+
+## Publish 
+
+# https://userprofilesai.ccbp.tech
+
